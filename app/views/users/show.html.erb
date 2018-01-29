@@ -1,9 +1,49 @@
-<div><%= @user.name %></div>
-<div><%= @user.email %></div>
-<%if current_user != nil %>
-	<%if @user.id == current_user.id%>
-		<div><%= link_to "Edit Profile", edit_user_path(current_user.id) %></div>
-	<%end%>
-<%end%>
+<body id="user_show_main">
+	<div class="frame">
+	  <div class="center">
+	    
+			<div class="profile">
+				<div class="image">
+					<div class="circle-1"></div>
+					<div class="circle-2"></div>
+					<%if @user.check_avatar %>
+						<%= image_tag @user.avatar%>
+					<%else%>
+						<%= image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/5222813300aeedfaa9d85eacab199d32--fondant-recipes-frosting-recipes.jpg"%>
+					<%end%>	
+				</div>
+				
+				<div class="name"><%= @user.name %></div>
+				<div class="email"><%= @user.email %></div>
+				
+				<div class="actions">
+					<%if current_user != nil %>
+						<%if @user.id == current_user.id%>
+							<button class="btn"><%= link_to "Make Payment", braintree_new_path %></button>
+						<%end%>
+						<%if @user.id == current_user.id%>
+							<button class="btn"><%= link_to "Edit Profile", edit_user_path(current_user.id),{id:"edit_profile_button"} %></button>
+						<%end%>
+					<%end%>
+				</div>
+			</div>
+			
+			<div class="stats">
+				<div class="box">
+					<span class="value" >0</span>
+					<span class="parameter">Recipe Created</span>
+				</div>
+				<div class="box">
+					<span class="value">0</span>
+					<span class="parameter">Recipe Likes</span>
+				</div>
+				<div class="box">
+					<span class="value">0</span>
+					<span class="parameter">Follower</span>
+				</div>
+			</div>
+	  </div>
+	</div>
+</body>
 
-<%= link_to "Make Payment", braintree_new_path %>
+

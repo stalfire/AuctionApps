@@ -1,3 +1,23 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#user_login_body{
+	background-image: url(https://s3-ap-southeast-1.amazonaws.com/stalfire/Cast-Iron-Skillet.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	min-width: 100%;
+	min-height: 100%
+}
+.user_login_main{
+	text-align: center;
+	padding-top: 5%;
+}
+
+@media (max-height: 800px) {
+  
+  .user_login_main{
+    padding: 10px;
+  }
+}

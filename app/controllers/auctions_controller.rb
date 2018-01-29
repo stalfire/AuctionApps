@@ -24,6 +24,15 @@ class AuctionsController < ApplicationController
 			render 'edit'
 		end
 	end
+	def bid
+		@auction = Auction.find(params[:auction][:auction_id])
+		if @auction.update(params_for_bidder)
+			respond_to do |format|
+			format.json { render json: @auction }
+			# format.json { render json: @bidder }
+			end
+		end
+	end
 
 	def destroy
 		@auction = Auction.find(params[:id])
@@ -33,6 +42,7 @@ class AuctionsController < ApplicationController
 
 	def show
 		@auction = Auction.find(params[:id])
+		@bidder = User.find(@auction.bidder)
 	end
 
 	def index
@@ -47,6 +57,9 @@ private
 	
 	def params_for_auction
 		params.require(:auction).permit({avatar: []},:title,:category,:user_id)
+	end
+	def params_for_bidder
+		params.require(:auction).permit(:bidder, :amount)
 	end
 	def filtering_params(params)
   		params.slice(:category,:user_id)

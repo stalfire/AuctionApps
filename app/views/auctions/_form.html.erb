@@ -1,9 +1,41 @@
-<%= form_for @auction do |f| %>
-	<%= f.file_field :avatar, multiple: true %>
-	<%= f.text_field :title, type: 'name',placeholder:"Title"%>
-	<%= f.select(:category, ['A', 'B', 'C', 'D', 'E', 'Other'], {include_blank: "Select Type of Item"}) %>
-	<% if current_user.reg_user? %>
-		<%= f.hidden_field :user_id, :value => current_user.id %>
-	<%end%>
-	<%= f.submit %>
-<%end%>
+<script>
+  $(document).ready(function(){
+    var preview = $("#edit_profile_picture");
+
+    $("#edit_profile_image").change(function(event){
+       var input = $(event.currentTarget);
+       var file = input[0].files[0];
+       var reader = new FileReader();
+       reader.onload = function(e){
+           image_base64 = e.target.result;
+           preview.attr("src", image_base64);
+       };
+       reader.readAsDataURL(file);
+    });
+  });
+</script>
+<body id="user_sign_up_body">
+	<div class='window'>
+    <div class='overlay'></div>
+    <div class='content'>
+      <div class='welcome' style="margin-top: 15px;">Create New Auction Item</div>
+      <%if @auction.avatar == nil %>
+      <div class="upload-preview"><%= image_tag @auction.avatar,:id => "edit_profile_picture"%></div>
+      <%else%>
+      <div><%= image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/5222813300aeedfaa9d85eacab199d32--fondant-recipes-frosting-recipes.jpg",:id => "edit_profile_picture"%></div>
+      <%end%>
+      <div class='input-fields'>
+      	<%= form_for @auction do |form| %>
+      		<%= form.file_field :avatar, :id => "edit_profile_image" %>
+      		<%= form.text_field :title, type: 'name',placeholder:"Title",class:"input-line full-width"%>
+      		<%= form.number_field :amount, type: 'name',placeholder:"Starting Bid Amount",class:"input-line full-width"%>
+      		<%= form.select(:category, ['A', 'B', 'C', 'D', 'E', 'Other'], {include_blank: "Select Type of Item"}) %>
+			<% if current_user.reg_user? %>
+				<%= form.hidden_field :user_id, :value => current_user.id %>
+			<%end%>
+        	<div><%= form.submit "Put Item",:class => "ghost-round full-width" %></div>
+        <%end%>	
+      </div>
+	</div>
+</div>
+</body>

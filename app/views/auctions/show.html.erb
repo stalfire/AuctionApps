@@ -1,10 +1,35 @@
 <div><%= image_tag @auction.avatar[0]%></div>
 <div><%= @auction.title %></div>
 <div><%= @auction.category %></div>
+<div><%= @auction.amount %> bid by <%= @bidder.name %></div>
 
 <%if current_user != nil%>
 	<%if @auction.user_id == current_user.id || current_user.admin? %>
 		<%= link_to "Edit", edit_auction_path %>
 		<%= link_to "Delete", auction_path, method: :delete, data: {confirm: "Are you sure ?"} %>
+	<%else%>
+		<%= form_for @auction ,:url => bid_path, :method => 'post' do |f| %>
+			<%= f.hidden_field :auction_id, :value => @auction.id %>
+			<%= f.number_field :amount, type: 'name',placeholder:"Bid Amount", value: ""%>
+			<%= f.hidden_field :bidder, :value => current_user.id %>
+			<%= f.submit "Bid"%>
+		<%end%> 
 	<%end%>
 <%end%>
+
+<script>
+$(document).ready(function(){
+$('.edit_auction').submit(function(e){
+		e.preventDefault();
+		$.ajax({
+			url: '/bid',
+			method: 'POST',
+			data: $(this).serialize(),
+			dataType: 'json',
+			success: function(data){
+				console.log(data);
+			}		
+		})
+	});
+});
+</script>

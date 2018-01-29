@@ -5,6 +5,9 @@ class User < ApplicationRecord
   	validates :name, presence: true
 	has_secure_password
  	has_secure_token
+ 	
+ 	mount_uploader :avatar, AvatarUploader
+  	serialize :avatar, JSON
 
  	has_many :auctions
 
@@ -16,7 +19,7 @@ class User < ApplicationRecord
 	    user = self.create!(
 	      name: auth_hash["extra"]["raw_info"]["name"],
 	      email: auth_hash["extra"]["raw_info"]["email"],
-	      # avatar: auth_hash["info"]["image"],
+	      avatar: auth_hash["info"]["image"],
 	      password: SecureRandom.hex(5)
 	      # rand(36**9).to_s(36)
 	    )
@@ -28,6 +31,10 @@ class User < ApplicationRecord
 	def fb_token
 		x = self.authentications.find_by(provider: 'facebook')
 		return x.token unless x.nil?
+	end
+
+	def check_avatar
+		self.avatar.url
 	end
 end
 

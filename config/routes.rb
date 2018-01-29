@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
 	get 'braintree/new'
 	post 'braintree/checkout'
+
+	post "/bid" => "auctions#bid"
 	
 	get "/test" => "home#test"
 
