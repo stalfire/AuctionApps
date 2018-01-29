@@ -19,27 +19,28 @@
 <% @s_celsius = s_temp['temp']%>
 
 <div class=" col-xs-4">
-              <%= link_to "https://weather.com/weather/today/l/MYXX0008:1:MY", :class => "animsition-link" do %> 
-              <div id="tile3" class="tile" style="background-image: url(<%=@background%>); background-size: cover;">
-                 
-                  <div class="carousel slide" data-ride="carousel">
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                      <div class="item active">
-                         <img src="https://cbsnewyork.files.wordpress.com/2016/12/category_weather_500x500.png?w=310&h=310&crop=1"/>
-                      </div>
-                      <div class="item" style="">
-                         <h3 style="color: white; padding-left: .25em; font-weight: 300; font-family: 'Roboto', sans-serif;"> <%= @city %></h3><h4 style="color: white; padding-left: .75em; font-weight: 400; font-family: 'Roboto', sans-serif;">currently:</h4><h4 style="color: white; padding-left: .75em; font-weight: 400;  font-family: 'Roboto', sans-serif;"> temp: <%= @celsius.round %>° <br><%= @cloudtype %> <br>wind speed: <%= @speed%></h4> 
-                      </div>
-                      <div class="item" >
-                      <!--   <div class="container-fluid"> -->
-                          <img style="height:100%" src="<%=@s_background%>"/>
-                            <div style="top: .1em; position: absolute;">
-                             <h3 style="color: white; padding-left: .25em; font-weight: 300; font-family: 'Roboto', sans-serif;"> Singapore</h3><h4 style="color: white; padding-left: .75em; font-weight: 400; font-family: 'Roboto', sans-serif;">currently:</h4><h5 style="color: white; padding-left: .75em; font-weight: 400;  font-family: 'Roboto', sans-serif;"> temp: <%= @s_celsius.round %>° <br><%= @s_cloudtype %> <br>wind speed: <%= @s_speed%></h5> 
-                           </div>
-                         <!--  </div>  -->
-                      </div>
-                      </div> 
-                   </div>
-                    <% end %>  
-              </div>
+  <%= link_to "https://weather.com/weather/today/l/MYXX0008:1:MY", :class => "animsition-link" do %> 
+  <div id="tile3" class="tile" style="background-image: url(<%=@background%>); background-size: cover;">
+     
+      <div class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+             <img src="https://cbsnewyork.files.wordpress.com/2016/12/category_weather_500x500.png?w=310&h=310&crop=1"/>
+          </div>
+          <div class="item" style="">
+             <h3 style="color: white; padding-left: .25em; font-weight: 300; font-family: 'Roboto', sans-serif;"> <%= @city %></h3><h4 style="color: white; padding-left: .75em; font-weight: 400; font-family: 'Roboto', sans-serif;">currently:</h4><h4 style="color: white; padding-left: .75em; font-weight: 400;  font-family: 'Roboto', sans-serif;"> temp: <%= @celsius.round %>° <br><%= @cloudtype %> <br>wind speed: <%= @speed%></h4> 
+          </div>
+          <div class="item" >
+          <!--   <div class="container-fluid"> -->
+              <img style="height:100%" src="<%=@s_background%>"/>
+                <div style="top: .1em; position: absolute;">
+                 <h3 style="color: white; padding-left: .25em; font-weight: 300; font-family: 'Roboto', sans-serif;"> Singapore</h3><h4 style="color: white; padding-left: .75em; font-weight: 400; font-family: 'Roboto', sans-serif;">currently:</h4><h5 style="color: white; padding-left: .75em; font-weight: 400;  font-family: 'Roboto', sans-serif;"> temp: <%= @s_celsius.round %>° <br><%= @s_cloudtype %> <br>wind speed: <%= @s_speed%></h5> 
+               </div>
+             <!--  </div>  -->
+          </div>
+          </div> 
+       </div>
+  <% end %>  
+  </div>
+</div>
