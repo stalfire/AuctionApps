@@ -1,0 +1,10 @@
+<div><%= image_tag @auction.avatar[0]%></div>
+<div><%= @auction.title %></div>
+<div><%= @auction.category %></div>
+
+<%if current_user != nil%>
+	<%if @auction.user_id == current_user.id || current_user.admin? %>
+		<%= link_to "Edit", edit_auction_path %>
+		<%= link_to "Delete", auction_path, method: :delete, data: {confirm: "Are you sure ?"} %>
+	<%end%>
+<%end%>

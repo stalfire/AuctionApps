@@ -1,0 +1,8 @@
+<% @auctions.each do |f| %>
+	<%if f.avatar[0] != nil%>
+		<%= link_to (image_tag f.avatar[0]), f%>
+	<%else%>
+		<%= link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/us_img_recipe_default_600x600.jpg"),f%>
+	<%end%>
+	<p><%= f.title %></p>
+<%end%>

@@ -1,0 +1,7 @@
+<div><%= @user.name %></div>
+<div><%= @user.email %></div>
+<%if current_user != nil %>
+	<%if @user.id == current_user.id%>
+		<div><%= link_to "Edit Profile", edit_user_path(current_user.id) %></div>
+	<%end%>
+<%end%>

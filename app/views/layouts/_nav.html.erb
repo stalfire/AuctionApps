@@ -1,0 +1,14 @@
+<nav>
+	<%= link_to (image_tag 'https://s3-ap-southeast-1.amazonaws.com/stalfire/icon.png',{id: 'nav-icon'}),root_path %>
+	<%= link_to "All Auction", auctions_path,{class:'nav-position-left'} %>
+	<%= link_to "Look for items",{class:'nav-position-left'} %>
+
+	<%if logged_in?%>
+		<%= link_to ("Log out"), logout_path, method: :delete, :class => 'nav-position-right' %>
+		<%= link_to "Create new auction", new_auction_path,{class:'nav-position-right'} %>
+		<%= link_to "My Profile", user_path(current_user.id),{class:'nav-position-right'}%>
+	<%else%>
+		<%= link_to ("sign up"), sign_up_path,{class:'nav-position-right'}%>
+		<%= link_to ("sign in"), login_path,{class:'nav-position-right'} %>
+	<%end%>
+</nav>

@@ -1,0 +1,6 @@
+<%= form_for @user do |form| %>
+	<%= form.text_field :name, type: 'name',placeholder:"Name"%>
+	<%= form.text_field :email, type: 'email',placeholder:"E-mail"%>
+	<%= form.text_field :password, type: 'password',placeholder:"Password"%>
+	<%= form.submit "Update Profile"%>
+<%end%>	

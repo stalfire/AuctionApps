@@ -1,0 +1,9 @@
+<%= form_for @auction do |f| %>
+	<%= f.file_field :avatar, multiple: true %>
+	<%= f.text_field :title, type: 'name',placeholder:"Title"%>
+	<%= f.select(:category, ['A', 'B', 'C', 'D', 'E', 'Other'], {include_blank: "Select Type of Item"}) %>
+	<% if current_user.reg_user? %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+	<%end%>
+	<%= f.submit %>
+<%end%>
