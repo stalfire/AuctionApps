@@ -1,13 +1,13 @@
-<body class="recipe-body">
+<body class="auction-body">
 <div>
-	<div id="recipe-index-wrapper">
+	<div id="auction-index-wrapper">
 		<% @auctions.each do |f| %>
-			<div class="recipe-index-box">
-				<div class="recipe-index-image">
+			<div class="auction-index-box">
+				<div class="auction-index-image">
 					<%if f.avatar[0] != nil%>
-					<%= link_to (image_tag f.avatar[0],{id:'recipe-index-image-size'}), f%>
+					<%= link_to (image_tag f.avatar[0],{id:'auction-index-image-size'}), f%>
 					<%else%>
-					<%= link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/us_img_recipe_default_600x600.jpg",{id:"recipe-index-image-size"}),f%>
+					<%= link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/us_img_recipe_default_600x600.jpg",{id:"auction-index-image-size"}),f%>
 					<%end%>
 				</div>
 				<p><%= f.title %></p>

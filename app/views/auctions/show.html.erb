@@ -1,21 +1,27 @@
-<div><%= image_tag @auction.avatar[0]%></div>
-<div><%= @auction.title %></div>
-<div><%= @auction.category %></div>
-<div><%= @auction.amount %> bid by <%= @bidder.name %></div>
-
-<%if current_user != nil%>
-	<%if @auction.user_id == current_user.id || current_user.admin? %>
-		<%= link_to "Edit", edit_auction_path %>
-		<%= link_to "Delete", auction_path, method: :delete, data: {confirm: "Are you sure ?"} %>
-	<%else%>
-		<%= form_for @auction ,:url => bid_path, :method => 'post' do |f| %>
-			<%= f.hidden_field :auction_id, :value => @auction.id %>
-			<%= f.number_field :amount, type: 'name',placeholder:"Bid Amount", value: ""%>
-			<%= f.hidden_field :bidder, :value => current_user.id %>
-			<%= f.submit "Bid"%>
-		<%end%> 
-	<%end%>
-<%end%>
+<div id="auction-show-wrapper">
+	<div id="auction-show-left"><%= image_tag @auction.avatar[0]%></div>
+	<div id="auction-show-right">
+		<h1><%= @auction.title %></h1>
+		<h3>Category: <%= @auction.category %></h3>
+		<h4 id="bidder_ajax">Current Bidder: <%= @bidder.name%></h4>
+		<h4 id="amount_ajax">Current bid Amount: <%= @auction.amount %></h4>
+		<div>
+		<%if current_user != nil%>
+			<%if @auction.user_id == current_user.id || current_user.admin? %>
+				<%= link_to "Edit", edit_auction_path %>
+				<%= link_to "Delete", auction_path, method: :delete, data: {confirm: "Are you sure ?"} %>
+			<%else%>
+				<%= form_for @auction ,:url => bid_path, :method => 'post' do |f| %>
+					<%= f.hidden_field :auction_id, :value => @auction.id %>
+					<%= f.number_field :amount, type: 'name',placeholder:"Bid Amount", value: ""%>
+					<%= f.hidden_field :bidder, :value => current_user.id %>
+					<%= f.button "Bid" %>
+				<%end%> 
+			<%end%>
+		<%end%>
+		</div>
+	</div>
+</div>
 
 <script>
 $(document).ready(function(){
@@ -28,7 +34,9 @@ $('.edit_auction').submit(function(e){
 			dataType: 'json',
 			success: function(data){
 				console.log(data);
-			}		
+				$('#bidder_ajax').html('<h4 id= "bidder_ajax">Current Bidder: '+ data.bidder.name + '</h4>');
+				$('#amount_ajax').html('<h4 id= "amount_ajax">Current bid Amount: '+ data.auction.amount + '</h4>');		
+            }
 		})
 	});
 });

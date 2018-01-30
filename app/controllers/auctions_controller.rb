@@ -26,10 +26,10 @@ class AuctionsController < ApplicationController
 	end
 	def bid
 		@auction = Auction.find(params[:auction][:auction_id])
+		@bidder = User.find(@auction.bidder)
 		if @auction.update(params_for_bidder)
 			respond_to do |format|
-			format.json { render json: @auction }
-			# format.json { render json: @bidder }
+			format.json { render :json => {:auction => @auction, :bidder => @bidder}}
 			end
 		end
 	end
