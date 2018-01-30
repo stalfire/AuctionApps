@@ -26,12 +26,20 @@ class AuctionsController < ApplicationController
 	end
 	def bid
 		@auction = Auction.find(params[:auction][:auction_id])
-		@bidder = User.find(@auction.bidder)
-		if @auction.update(params_for_bidder)
-			respond_to do |format|
-			format.json { render :json => {:auction => @auction, :bidder => @bidder}}
+		@amount = params[:auction][:amount]
+		if @amount.to_i > @auction.amount.to_i
+			if @auction.update(params_for_bidder)
+				@bidder = User.find(@auction.bidder)
+				respond_to do |format|
+					format.json { render :json => {:auction => @auction, :bidder => @bidder, :message => "Bid Success"}}
+				end
 			end
-		end
+		else
+			respond_to do |format|
+				@bidder = User.find(@auction.bidder)
+				format.json { render :json => {:auction => @auction, :bidder => @bidder, :message => "Someone Has Higher Bid"}}
+			end
+		end	
 	end
 
 	def destroy
@@ -42,7 +50,9 @@ class AuctionsController < ApplicationController
 
 	def show
 		@auction = Auction.find(params[:id])
-		@bidder = User.find(@auction.bidder)
+		if @auction.bidder != nil
+			@bidder = User.find(@auction.bidder)
+		end
 	end
 
 	def index
@@ -56,12 +66,12 @@ class AuctionsController < ApplicationController
 private
 	
 	def params_for_auction
-		params.require(:auction).permit({avatar: []},:title,:category,:user_id)
+		params.require(:auction).permit({avatar: []},:title,:category,:user_id, :amount)
 	end
 	def params_for_bidder
 		params.require(:auction).permit(:bidder, :amount)
 	end
 	def filtering_params(params)
-  		params.slice(:category,:user_id)
+  		params.slice(:title,:category,:user_id)
 	end
 end
