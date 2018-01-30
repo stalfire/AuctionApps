@@ -36,8 +36,12 @@ class AuctionsController < ApplicationController
 			end
 		else
 			respond_to do |format|
-				@bidder = User.find(@auction.bidder)
-				format.json { render :json => {:auction => @auction, :bidder => @bidder, :message => "Someone Has Higher Bid"}}
+				if @auction.bidder != nil
+					@bidder = User.find(@auction.bidder)
+					format.json { render :json => {:auction => @auction, :bidder => @bidder, :message => "Someone Has Higher Bid"}}
+				else
+					format.json { render :json => {:auction => @auction, :bidder => {:name => "None"} , :message => "Bid is lower then starting bid"}}
+				end
 			end
 		end	
 	end
