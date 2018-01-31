@@ -1,5 +1,37 @@
 <body class="auction-body">
 <div>
+	<div class="flex-container">
+	    <div class="category">
+	        <%=link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/breakfast2-512.png",{class:"category_image"}),auctions_path(category:"A")%> 
+	        <h4> A </h4>
+	    </div>
+
+	    <div class="category">
+	        <%=link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/appetizer.png",{class:"category_image"}),auctions_path(category:"B")%>
+	        <h4> B </h4>
+	    </div>
+
+	    <div class="category">
+	        <%=link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/main-course.png",{class:"category_image"}),auctions_path(category:"C")%> 
+	       <h4> C </h4>
+	    </div>
+
+	    <div class="category">
+	        <%=link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/bread-icon.png",{class:"category_image"}),auctions_path(category:"D")%>
+	        <h4> D </h4>
+	    </div>
+
+	    <div class="category">
+	        <%=link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/dessert.png",{class:"category_image"}),auctions_path(category:"E")%> 
+	        <h4> E </h4>
+	    </div>
+
+	    <div class="category">
+	        <%=link_to (image_tag "https://s3-ap-southeast-1.amazonaws.com/stalfire/other.png",{class:"category_image"}),auctions_path(category:"Other")%>
+	        <h4> Other </h4>
+	    </div>
+	</div>
+	<hr class="line_style">
 	<div id="auction-index-wrapper">
 		<% @auctions.each do |f| %>
 			<div class="auction-index-box">

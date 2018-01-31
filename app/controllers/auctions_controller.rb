@@ -76,6 +76,6 @@ private
 		params.require(:auction).permit(:bidder, :amount)
 	end
 	def filtering_params(params)
-  		params.slice(:title,:category,:user_id)
+  		params.slice(:title,:category)
 	end
 end

@@ -1,3 +1,22 @@
+<script>
+	var getIP = 'http://ip-api.com/json/';
+	var openWeatherMap = 'http://api.openweathermap.org/data/2.5/weather'
+	$.getJSON(getIP).done(function(location) {
+	    $.getJSON(openWeatherMap, {
+	        lat: location.lat,
+	        lon: location.lon,
+	        units: 'metric',
+	        APPID: '<%= ENV["WX_KEY"] %>'
+	    }).done(function(weather) {
+	        // console.log(weather)
+	        $('#weather-show').append('<br><h4">Weather: '+ weather.weather["0"].description + '</h4></br>');
+	        $('#weather-show').append('<h4">Humidity: '+ weather.main.humidity + '%</h4></br>');
+	        $('#weather-show').append('<h4">Temperature: '+ weather.main.temp_min + '</h4></br>');
+	        $('#weather-show').append('<h4">Wind Speed: '+ weather.wind.speed + '</h4></br>');
+	    })
+	})
+</script>
+<!--
 <% options = { units: "metric", APPID: ENV["WX_KEY"] } %>
 <% weatherall = OpenWeather::Current.city_id("1733046", options) %>
 <% @city = weatherall ['name' ] %>
@@ -7,25 +26,11 @@
 <% @cloudtype = weatherall['weather'][0]['description'] %>
 <% temp = weatherall['main']%>
 <% @celsius = temp['temp']%>
-
-<% s_options = { units: "metric", APPID: ENV["WX_KEY"] } %>
-<% s_weatherall = OpenWeather::Current.city_id("1880251", s_options ) %>
-<% @s_city = s_weatherall ['name' ] %>
-<% s_wind = s_weatherall ['wind' ] %>
-<% @s_speed = s_wind ['speed' ] %>
-<% s_sky = s_weatherall ['weather']%>
-<% @s_cloudtype = s_sky[0]['description']%>
-<% s_temp = s_weatherall['main']%>
-<% @s_celsius = s_temp['temp']%>
+     
+<h3><%= @city %></h3>
+<h4>currently:</h4>
+<h4> temp: <%= @celsius.round %>° <br><%= @cloudtype %> <br>wind speed: <%= @speed%></h4> -->
 
 
+<div id="weather-show" style="text-align: left;">Your Current Location Weather</br></div>
 
-          
-<h3 style="color: white; padding-left: .25em; font-weight: 300; font-family: 'Roboto', sans-serif;"> <%= @city %></h3>
-<h4 style="color: white; padding-left: .75em; font-weight: 400; font-family: 'Roboto', sans-serif;">currently:</h4>
-<h4 style="color: white; padding-left: .75em; font-weight: 400;  font-family: 'Roboto', sans-serif;"> temp: <%= @celsius.round %>° <br><%= @cloudtype %> <br>wind speed: <%= @speed%></h4> 
-
-          
-<h3 style="color: white; padding-left: .25em; font-weight: 300; font-family: 'Roboto', sans-serif;"> Singapore</h3>
-<h4 style="color: white; padding-left: .75em; font-weight: 400; font-family: 'Roboto', sans-serif;">currently:</h4>
-<h5 style="color: white; padding-left: .75em; font-weight: 400;  font-family: 'Roboto', sans-serif;"> temp: <%= @s_celsius.round %>° <br><%= @s_cloudtype %> <br>wind speed: <%= @s_speed%></h5> 

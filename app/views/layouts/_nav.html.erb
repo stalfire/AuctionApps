@@ -1,7 +1,11 @@
 <nav>
 	<%= link_to (image_tag 'https://s3-ap-southeast-1.amazonaws.com/stalfire/icon.png',{id: 'nav-icon'}),root_path %>
 	<%= link_to "All Auction", auctions_path,{class:'nav-position-left'} %>
-	<%= link_to "Look for items",{class:'nav-position-left'} %>
+	<%= form_tag(auctions_path, method: :get) do %>
+	  <%= text_field_tag :title, params[:title] %>
+	  <%= submit_tag 'Search' %>
+	<% end %>
+
 
 	<%if logged_in?%>
 		<%= link_to ("Log out"), logout_path, method: :delete, :class => 'nav-position-right' %>

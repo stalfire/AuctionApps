@@ -5,4 +5,8 @@ class Auction < ApplicationRecord
 
 	mount_uploaders :avatar, AvatarUploader
 	serialize :avatars, JSON
+
+	scope :category, -> (category) { where category: category}
+
+	scope :title, -> (title) { where("title ILIKE ?", "#{title}%")}
 end

@@ -63,3 +63,10 @@ a #nav-icon{
 .nav-position-right:hover:not(.active) {
     background-color: #eeec82;
 }
+nav form{
+	float: left;
+	padding-top: 0px;
+	padding: 14px 16px;
+	display: inline-block;
+	text-decoration: none;
+}
