@@ -12,7 +12,8 @@ RSpec.describe User, type: :model do
   	describe "Check" do
   		context "User Profile Image" do
   			it "wheather exist" do
-  				
+  				user = User.create(name: 'rspec_user5', password: 'rspec_user5')
+          expect(user.check_avatar).to be nil
   			end
   		end
   	end
