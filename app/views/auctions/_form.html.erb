@@ -30,9 +30,9 @@
       		<%= form.text_field :title, type: 'name',placeholder:"Title",class:"input-line full-width"%>
       		<%= form.number_field :amount, type: 'name',placeholder:"Starting Bid Amount",class:"input-line full-width"%>
       		<%= form.select(:category, ['A', 'B', 'C', 'D', 'E', 'Other'], {include_blank: "Select Type of Item"}) %>
-			<% if current_user.reg_user? %>
-				<%= form.hidden_field :user_id, :value => current_user.id %>
-			<%end%>
+    			<% if current_user.reg_user? %>
+    				<%= form.hidden_field :user_id, :value => current_user.id %>
+    			<%end%>
         	<div><%= form.submit "Put Item",:class => "ghost-round full-width" %></div>
         <%end%>	
       </div>

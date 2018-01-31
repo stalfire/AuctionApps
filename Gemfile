@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'has_secure_token'
+gem 'jquery-rails'
+gem 'rails_12factor', group: :production
 gem 'faker'
 gem 'figaro'
 gem 'omniauth'
