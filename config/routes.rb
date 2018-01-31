@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
 	post "/bid" => "auctions#bid"
 	
-	get "/test" => "home#test"
+	get "/map" => "home#map"
 
   	root 'home#index'
 end

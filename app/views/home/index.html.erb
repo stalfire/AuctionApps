@@ -8,13 +8,14 @@
 	        units: 'metric',
 	        APPID: '<%= ENV["WX_KEY"] %>'
 	    }).done(function(weather) {
-	        // console.log(weather)
-	        $('#weather-show').append('<br><h4">Weather: '+ weather.weather["0"].description + '</h4></br>');
-	        $('#weather-show').append('<h4">Humidity: '+ weather.main.humidity + '%</h4></br>');
-	        $('#weather-show').append('<h4">Temperature: '+ weather.main.temp_min + '</h4></br>');
-	        $('#weather-show').append('<h4">Wind Speed: '+ weather.wind.speed + '</h4></br>');
+	        console.log(weather)
+	        $('#weather-show1').html('<br><h4">Weather: '+ weather.weather["0"].description + '</h4></br>');
+	        $('#weather-show2').html('<h4">Humidity: '+ weather.main.humidity + '%</h4></br>');
+	        $('#weather-show3').html('<h4">Temperature: '+ weather.main.temp_min + '</h4></br>');
+	        $('#weather-show4').html('<h4">Wind Speed: '+ weather.wind.speed + '</h4></br>');
 	    })
 	})
+
 </script>
 <!--
 <% options = { units: "metric", APPID: ENV["WX_KEY"] } %>
@@ -30,7 +31,15 @@
 <h3><%= @city %></h3>
 <h4>currently:</h4>
 <h4> temp: <%= @celsius.round %>° <br><%= @cloudtype %> <br>wind speed: <%= @speed%></h4> -->
-
-
-<div id="weather-show" style="text-align: left;">Your Current Location Weather</br></div>
-
+<body id="home-background">
+<div id="weather-info">
+		<p>Your Current Location Weather</p>
+		<p id="weather-show1"></p>
+		<p id="weather-show2"></p>
+		<p id="weather-show3"></p>
+		<p id="weather-show4"></p>
+</div>	
+<div id="home-title">
+	<h1>Auctiony</h1>
+</div>
+</body>

@@ -1,3 +1,4 @@
+<body class="auction-body">
 <div id="auction-show-wrapper">
 	<div id="auction-show-left">
 	<%if @auction.avatar[0] != nil %>
@@ -12,9 +13,8 @@
 		<%if @auction.bidder != nil %>
 			<h4 id="bidder_ajax">Current Bidder: <%= @bidder.name%>
 		<%else%>
-			<h4 id="bidder_ajax">Current Bidder: None
+			<h4 id="bidder_ajax">Current Bidder: None</h4>
 		<%end%>
-		</h4>
 		<h4 id="amount_ajax">Current bid Amount: <%= @auction.amount %></h4>
 		
 		<h4 id="message_ajax">Bid Now</h4>
@@ -35,6 +35,7 @@
 		</div>
 	</div>
 </div>
+</body>
 
 <script>
 $(document).ready(function(){
