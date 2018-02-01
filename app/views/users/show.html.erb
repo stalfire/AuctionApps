@@ -19,10 +19,10 @@
 				<div class="actions">
 					<%if current_user != nil %>
 						<%if @user.id == current_user.id%>
-							<button class="btn"><%= link_to "Make Payment", braintree_new_path %></button>
+							<p class="btn"><%= link_to "Make Payment", braintree_new_path %></p>
 						<%end%>
 						<%if @user.id == current_user.id%>
-							<button class="btn"><%= link_to "Edit Profile", edit_user_path(current_user.id),{id:"edit_profile_button"} %></button>
+							<p class="btn"><%= link_to "Edit Profile", edit_user_path(current_user.id),{id:"edit_profile_button"} %></p>
 						<%end%>
 					<%end%>
 				</div>
