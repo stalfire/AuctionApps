@@ -30,6 +30,7 @@ ActiveRecord::Base.transaction do
   40.times do 
     auction['title'] = Faker::Zelda.item
     auction['category'] = ["House", "Vehicle", "Electronics", "Sport", "Clothing", "Other"].sample
+    auction['amount'] = rand(1..50)
     auction['user_id'] = uids.sample
 
     Auction.create(auction)
