@@ -1,8 +1,7 @@
 <script>
-	var openWeatherMap = 'http://api.openweathermap.org/data/2.5/weather'
 	$.getJSON('https://ipapi.co/json/').done(function(location) {
 		// console.log(location);
-	    $.getJSON(openWeatherMap, {
+	    $.getJSON('http://api.openweathermap.org/data/2.5/weather', {
 	        lat: location.latitude,
 	        lon: location.longitude,
 	        units: 'metric',
