@@ -20,10 +20,13 @@
 					<%if current_user != nil %>
 						<%if @user.id == current_user.id%>
 							<p class="btn"><%= link_to "Make Payment", braintree_new_path %></p>
-						<%end%>
-						<%if @user.id == current_user.id%>
 							<p class="btn"><%= link_to "Edit Profile", edit_user_path(current_user.id),{id:"edit_profile_button"} %></p>
+							<p class="btn"><%= link_to "Delivery Address", map_path,{id:"edit_profile_button"} %></p>
+						<%elsif @user.id != current_user.id%>
+							<p class="btn"><%= link_to "Auction Items", auctions_path(user_id: @user.id) %></p>
 						<%end%>
+					<%else%>
+						<p class="btn"><%= link_to "Auction Items", auctions_path(user_id: @user.id) %></p>
 					<%end%>
 				</div>
 			</div>

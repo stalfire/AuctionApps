@@ -7,6 +7,7 @@ class Auction < ApplicationRecord
 	serialize :avatars, JSON
 
 	scope :category, -> (category) { where category: category}
+	scope :user_id, -> (user_id) { where user_id: user_id}
 
 	scope :title, -> (title) { where("title ILIKE ?", "#{title}%")}
 end

@@ -1,14 +1,14 @@
 <script>
-	var getIP = 'http://ip-api.com/json/';
 	var openWeatherMap = 'http://api.openweathermap.org/data/2.5/weather'
-	$.getJSON(getIP).done(function(location) {
+	$.getJSON('https://ipapi.co/json/').done(function(location) {
+		// console.log(location);
 	    $.getJSON(openWeatherMap, {
-	        lat: location.lat,
-	        lon: location.lon,
+	        lat: location.latitude,
+	        lon: location.longitude,
 	        units: 'metric',
 	        APPID: '<%= ENV["WX_KEY"] %>'
 	    }).done(function(weather) {
-	        console.log(weather)
+	        // console.log(weather)
 	        $('#weather-show1').html('<br><h4">Weather: '+ weather.weather["0"].description + '</h4></br>');
 	        $('#weather-show2').html('<h4">Humidity: '+ weather.main.humidity + '%</h4></br>');
 	        $('#weather-show3').html('<h4">Temperature: '+ weather.main.temp_min + '</h4></br>');
@@ -17,20 +17,7 @@
 	})
 
 </script>
-<!--
-<% options = { units: "metric", APPID: ENV["WX_KEY"] } %>
-<% weatherall = OpenWeather::Current.city_id("1733046", options) %>
-<% @city = weatherall ['name' ] %>
-<% wind = weatherall ['wind' ] %>
-<% @speed = wind ['speed' ] %>
-<% sky = weatherall ['weather']%>
-<% @cloudtype = weatherall['weather'][0]['description'] %>
-<% temp = weatherall['main']%>
-<% @celsius = temp['temp']%>
-     
-<h3><%= @city %></h3>
-<h4>currently:</h4>
-<h4> temp: <%= @celsius.round %>° <br><%= @cloudtype %> <br>wind speed: <%= @speed%></h4> -->
+
 <body id="home-background">
 <div id="weather-info">
 		<p>Your Current Location Weather</p>

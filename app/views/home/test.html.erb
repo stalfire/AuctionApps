@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
   // Note: This example requires that you consent to location sharing when
   // prompted by your browser. If you see the error "The Geolocation service
   // failed.", it means you probably did not give permission for the browser to
@@ -41,4 +41,36 @@
   }
 </script>
 <script async defer src= https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP"]%>&callback=initMap>
+</script>
+<!-- <script>
+  var getIP = 'http://ip-api.com/json/';
+  var openWeatherMap = 'http://api.openweathermap.org/data/2.5/weather'
+  $.getJSON(getIP).done(function(location) {
+    console.log(location);
+      $.getJSON(openWeatherMap, {
+          lat: location.lat,
+          lon: location.lon,
+          units: 'metric',
+          APPID: '<%= ENV["WX_KEY"] %>'
+      }).done(function(weather) {
+          console.log(weather)
+          
+      })
+  })
 </script> -->
+
+<% options = { units: "metric", APPID: ENV["WX_KEY"] } %>
+<% weatherall = OpenWeather::Current.city_id("1733046", options) %>
+<% @city = weatherall ['name' ] %>
+<% wind = weatherall ['wind' ] %>
+<% @speed = wind ['speed' ] %>
+<% sky = weatherall ['weather']%>
+<% @cloudtype = weatherall['weather'][0]['description'] %>
+<% temp = weatherall['main']%>
+<% @celsius = temp['temp']%>
+     
+<h3><%= @city %></h3>
+<h4>currently:</h4>
+<h4> temp: <%= @celsius.round %>° <br><%= @cloudtype %> <br>wind speed: <%= @speed%></h4>
+
+<div id="map"></div>

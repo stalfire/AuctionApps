@@ -1,23 +1,21 @@
 <script>
-  var getIP = 'http://ip-api.com/json/';
-  var openWeatherMap = 'http://api.openweathermap.org/data/2.5/weather'
-  var map, infoWindow;
-  $.getJSON(getIP).done(function(location) {
+    var map, infoWindow;
+    $.getJSON('https://ipapi.co/json/').done(function(location) {
           map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: location.lat, lng: location.lon},
+          center: {lat: location.latitude, lng: location.longitude},
           zoom: 15
         });
         infoWindow = new google.maps.InfoWindow;
         var pos = {
-            lat: location.lat,
-            lng: location.lon,
+            lat: location.latitude,
+            lng: location.longitude,
           };
         
         infoWindow.setPosition(pos);
           infoWindow.setContent('Location found.');
           infoWindow.open(map);
           map.setCenter(pos);
-      })
+    })
   
   
 </script>
