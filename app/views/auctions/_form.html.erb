@@ -29,7 +29,7 @@
       		<%= form.file_field :avatar, multiple: true, :id => "edit_profile_image" %>
       		<%= form.text_field :title, type: 'name',placeholder:"Title",class:"input-line full-width"%>
       		<%= form.number_field :amount, type: 'name',placeholder:"Starting Bid Amount",class:"input-line full-width"%>
-      		<%= form.select(:category, ['A', 'B', 'C', 'D', 'E', 'Other'], {include_blank: "Select Type of Item"}) %>
+      		<%= form.select(:category, ["House", "Vehicle", "Electronics", "Sport", "Clothing", "Other"], {include_blank: "Select Type of Item"}) %>
     			<% if current_user.reg_user? %>
     				<%= form.hidden_field :user_id, :value => current_user.id %>
     			<%end%>
