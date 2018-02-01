@@ -17,4 +17,10 @@ RSpec.describe Auction, type: :model do
   			end
   		end
   	end
+    describe "Associations" do
+      it "has one user" do
+        association = described_class.reflect_on_association(:user)
+        expect(association.macro).to eq :belongs_to
+      end
+    end
 end
